@@ -11,7 +11,7 @@
 
 ## 使用
 
-① 在宿主机执行以下命令
+**1、在宿主机执行以下命令**
 ```commandline
 ip addr show docker0
 ```
@@ -26,12 +26,19 @@ ip addr show docker0
 ```
 则可继续进行，否则插件不适配
 
-② 在宿主机执行以下命令
+**2、在宿主机执行以下命令**
 ```commandline
-nohup sh -c 'while true; do nc -l -p 8000 | { printf "HTTP/1.1 200 OK\r\nContent Length: 0\r\n\r\n"; sleep 1; } ; docker restart langbot; done' &
+nohup sh -c 'while true; do nc -l -p 8000 | { sleep 1; } ; docker restart langbot; done' &
 ```
+注意：不要重复执行此命令
 
-③ 向机器人输入以下命令即可重启
+如果想要关闭端口监听 需要执行命令
+```commandline
+ps -ef|grep 'nc -l'
+```
+获取nohup与nc -l两个进程ID 然后通过kill命令杀掉进程
+
+**3、向机器人输入以下命令即可重启**
 ```commandline
 .重启
 ```
