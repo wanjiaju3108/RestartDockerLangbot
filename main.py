@@ -19,7 +19,6 @@ class RestartDockerLangbotPlugin(BasePlugin):
     async def person_normal_message_received(self, ctx: EventContext):
         msg = ctx.event.text_message  # 这里的 event 即为 PersonNormalMessageReceived 的对象
         if msg == ".重启":
-            ctx.add_return("reply", ["开始重启, {}!".format(ctx.event.sender_id)])
             url = "http://172.17.0.1:8000/restartLangbot"
             requests.get(url)
 
