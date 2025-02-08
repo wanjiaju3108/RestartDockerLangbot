@@ -20,11 +20,12 @@ class RestartDockerLangbotPlugin(BasePlugin):
         msg = ctx.event.text_message  # 这里的 event 即为 PersonNormalMessageReceived 的对象
         if msg == ".重启":
             url = "http://172.17.0.1:8000"
-            requests.get(url)
-
+            try:
+                requests.get(url)
+            except requests.exceptions.RequestException:
+                pass
             # 阻止该事件默认行为（向接口获取回复）
             ctx.prevent_default()
-
     # 插件卸载时触发
     def __del__(self):
         pass
