@@ -11,16 +11,27 @@
 
 ## 使用
 
-需要在宿主机中预先安装go语言环境
-
-将restart-langbot文件上传到宿主机中
-
-在宿主机执行以下命令
+① 执行以下命令
 ```commandline
-sudo chmod +x restart-langbot
-nohup ./restart-langbot > out.log 2>&1 &
+ip addr show docker0
 ```
-向机器人输入以下命令即可重启
+如果输出类似于
+```
+3: docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether 02:42:76:c9:b0:6e brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::42:76ff:fec9:b06e/64 scope link
+       valid_lft forever preferred_lft forever
+```
+则可继续进行，否则插件不适配
+
+② 执行以下命令
+```commandline
+wget https://github.com/wanjiaju3108/RestartDockerLangbot/blob/master/restart-langbot.sh && sudo chmod +x restart-langbot.sh && nohup ./restart-langbot.sh > out.log 2>&1 &
+```
+
+③ 向机器人输入以下命令即可重启
 ```commandline
 .重启
 ```
