@@ -28,7 +28,11 @@ ip addr show docker0
 
 ② 执行以下命令
 ```commandline
-wget https://github.com/wanjiaju3108/RestartDockerLangbot/blob/master/restart-langbot.sh && sudo chmod +x restart-langbot.sh && nohup ./restart-langbot.sh > out.log 2>&1 &
+wget https://github.com/wanjiaju3108/RestartDockerLangbot/blob/master/restart-langbot.sh && sudo chmod +x restart-langbot.sh
+```
+然后执行
+```commandline
+nohup ./restart-langbot.sh > out.log 2>&1 &
 ```
 
 ③ 向机器人输入以下命令即可重启
