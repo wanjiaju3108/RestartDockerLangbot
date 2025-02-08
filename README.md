@@ -11,7 +11,7 @@
 
 ## 使用
 
-① 执行以下命令
+① 在宿主机执行以下命令
 ```commandline
 ip addr show docker0
 ```
@@ -26,13 +26,9 @@ ip addr show docker0
 ```
 则可继续进行，否则插件不适配
 
-② 执行以下命令
+② 在宿主机执行以下命令
 ```commandline
-wget https://github.com/wanjiaju3108/RestartDockerLangbot/blob/master/restart-langbot.sh && sudo chmod +x restart-langbot.sh
-```
-然后执行
-```commandline
-nohup ./restart-langbot.sh > out.log 2>&1 &
+nohup sh -c 'while true; do nc -l -p 8000 | { printf "HTTP/1.1 200 OK\r\nContent Length: 0\r\n\r\n"; sleep 1; } ; docker restart langbot; done' &
 ```
 
 ③ 向机器人输入以下命令即可重启
